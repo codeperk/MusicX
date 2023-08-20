@@ -11,6 +11,7 @@ import useUploadModal from '@/hooks/useUploadModal';
 import { useUser } from "@/hooks/useUser";
 
 import Modal from './Modal';
+import Input from './Input';
 import Button from './Button';
 
 const UploadModal = () => {
@@ -128,10 +129,43 @@ const UploadModal = () => {
         onSubmit={handleSubmit(onSubmit)} 
         className="flex flex-col gap-y-4"
       >
+        <Input
+          id="title"
+          disabled={isLoading}
+          {...register('title', { required: true })}
+          placeholder="Song title"
+        />
+        <Input
+          id="author"
+          disabled={isLoading}
+          {...register('author', { required: true })}
+          placeholder="Song author"
+        />
+        <div>
+          <div className="pb-1">
+            Select a song file
+          </div>
+          <Input
+            placeholder="test" 
+            disabled={isLoading}
+            type="file"
+            accept=".mp3"
+            id="song"
+            {...register('song', { required: true })}
+          />
+        </div>
         <div>
           <div className="pb-1">
             Select an image
           </div>
+          <Input
+            placeholder="test" 
+            disabled={isLoading}
+            type="file"
+            accept="image/*"
+            id="image"
+            {...register('image', { required: true })}
+          />
         </div>
         <Button disabled={isLoading} type="submit">
           Create
