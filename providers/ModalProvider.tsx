@@ -2,9 +2,6 @@
 
 import { useEffect, useState } from "react";
 
-import { ProductWithPrice } from "@/types";
-
-
 const ModalProvider = () => {
   const [isMounted, setIsMounted] = useState(false);
 
@@ -18,7 +15,6 @@ const ModalProvider = () => {
 
   return (
     <>
-      Modal Provider
     </>
   );
 }
