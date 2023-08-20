@@ -47,4 +47,4 @@ This project is licensed under the [MIT License](LICENSE.txt).
 
 ---
 
-Made with ❤️ by the MusicX Team
+Made with ❤️ by the MusicX Team!
