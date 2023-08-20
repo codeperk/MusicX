@@ -4,8 +4,12 @@ import { twMerge } from "tailwind-merge";
 import { RxCaretLeft, RxCaretRight } from "react-icons/rx";
 import { useRouter } from "next/navigation";
 import { FaUserAlt } from "react-icons/fa";
+import { useSupabaseClient } from '@supabase/auth-helpers-react';
 import { HiHome } from "react-icons/hi";
 import { BiSearch } from "react-icons/Bi";
+
+import useAuthModal from "@/hooks/useAuthModal";
+import { useUser } from "@/hooks/useUser";
 
 import Button from "./Button";
 
@@ -19,10 +23,17 @@ const Header: React.FC<HeaderProps> = ({
   className,
 }) => {
   const router = useRouter();
+  const authModal = useAuthModal();
 
+  const supabaseClient = useSupabaseClient();
+  const { user } = useUser();
 
   const handleLogout = async () => {
-    // TODO: Implement logout   
+    const { error } = await supabaseClient.auth.signOut();
+    router.refresh();
+
+    if (error) {
+    }
   }
 
   return (
@@ -103,7 +114,7 @@ const Header: React.FC<HeaderProps> = ({
           </button>
         </div>
         <div className="flex justify-between items-center gap-x-4">
-          {true ? (
+          {user ? (
             <div className="flex gap-x-4 items-center">
               <Button 
                 onClick={handleLogout} 
@@ -122,7 +133,7 @@ const Header: React.FC<HeaderProps> = ({
             <>
               <div>
                 <Button 
-                  onClick={() => {}} 
+                  onClick={authModal.onOpen} 
                   className="
                     bg-transparent 
                     text-neutral-300 
@@ -134,7 +145,7 @@ const Header: React.FC<HeaderProps> = ({
               </div>
               <div>
                 <Button 
-                  onClick={() => {}} 
+                  onClick={authModal.onOpen} 
                   className="bg-white px-6 py-2"
                 >
                   Log in
