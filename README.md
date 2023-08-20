@@ -43,7 +43,7 @@ We value your feedback and want to hear from you! If you encounter any issues, h
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the [MIT License](LICENSE.txt).
 
 ---
 
